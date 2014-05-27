@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY florist "http://www.semanticweb.org/owltutorial/florist#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/owltutorial/florist#"
+     xml:base="http://www.semanticweb.org/owltutorial/florist"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:florist="http://www.semanticweb.org/owltutorial/florist#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/owltutorial/florist"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#enthaeltBlume -->
+
+    <owl:ObjectProperty rdf:about="&florist;enthaeltBlume">
+        <rdfs:range rdf:resource="&florist;Blume"/>
+        <rdfs:domain rdf:resource="&florist;Strauß"/>
+        <rdfs:subPropertyOf rdf:resource="&florist;enthaeltThings"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#enthaeltThings -->
+
+    <owl:ObjectProperty rdf:about="&florist;enthaeltThings">
+        <rdfs:domain rdf:resource="&florist;Strauß"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#hatFarbe -->
+
+    <owl:ObjectProperty rdf:about="&florist;hatFarbe">
+        <rdfs:domain rdf:resource="&florist;Blume"/>
+        <rdfs:range rdf:resource="&florist;Farbe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#teilvon -->
+
+    <owl:ObjectProperty rdf:about="&florist;teilvon">
+        <owl:inverseOf rdf:resource="&florist;enthaeltThings"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#teilvonStrauß -->
+
+    <owl:ObjectProperty rdf:about="&florist;teilvonStrauß">
+        <owl:inverseOf rdf:resource="&florist;enthaeltBlume"/>
+        <rdfs:subPropertyOf rdf:resource="&florist;teilvon"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#hatPreis -->
+
+    <owl:DatatypeProperty rdf:about="&florist;hatPreis"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Blau -->
+
+    <owl:Class rdf:about="&florist;Blau">
+        <rdfs:subClassOf rdf:resource="&florist;Farbe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#BlauerBlumenStrauß -->
+
+    <owl:Class rdf:about="&florist;BlauerBlumenStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&florist;hatFarbe"/>
+                                <owl:someValuesFrom rdf:resource="&florist;Blau"/>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Blume -->
+
+    <owl:Class rdf:about="&florist;Blume">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&florist;hatPreis"/>
+                <owl:someValuesFrom rdf:resource="&xsd;double"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&florist;hatFarbe"/>
+                <owl:onClass rdf:resource="&florist;Farbe"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Bouquet -->
+
+    <owl:Class rdf:about="&florist;Bouquet">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">7</owl:maxCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Farbe -->
+
+    <owl:Class rdf:about="&florist;Farbe">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Gelb -->
+
+    <owl:Class rdf:about="&florist;Gelb">
+        <rdfs:subClassOf rdf:resource="&florist;Farbe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Gelberstrauß -->
+
+    <owl:Class rdf:about="&florist;Gelberstrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&florist;hatFarbe"/>
+                                <owl:someValuesFrom rdf:resource="&florist;Gelb"/>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Karte -->
+
+    <owl:Class rdf:about="&florist;Karte">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Nelke -->
+
+    <owl:Class rdf:about="&florist;Nelke">
+        <rdfs:subClassOf rdf:resource="&florist;Blume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Nelkenstrauß -->
+
+    <owl:Class rdf:about="&florist;Nelkenstrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom rdf:resource="&florist;Nelke"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#NormalerStrauß -->
+
+    <owl:Class rdf:about="&florist;NormalerStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="&florist;Bouquet"/>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Rose -->
+
+    <owl:Class rdf:about="&florist;Rose">
+        <rdfs:subClassOf rdf:resource="&florist;Blume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#RosenStrauß -->
+
+    <owl:Class rdf:about="&florist;RosenStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom rdf:resource="&florist;Rose"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Rot -->
+
+    <owl:Class rdf:about="&florist;Rot">
+        <rdfs:subClassOf rdf:resource="&florist;Farbe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#RoterStrauß -->
+
+    <owl:Class rdf:about="&florist;RoterStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&florist;hatFarbe"/>
+                                <owl:someValuesFrom rdf:resource="&florist;Rot"/>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Strauß -->
+
+    <owl:Class rdf:about="&florist;Strauß">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Tulpe -->
+
+    <owl:Class rdf:about="&florist;Tulpe">
+        <rdfs:subClassOf rdf:resource="&florist;Blume"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#TulpenStrauß -->
+
+    <owl:Class rdf:about="&florist;TulpenStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom rdf:resource="&florist;Tulpe"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&florist;Strauß"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Verpackung -->
+
+    <owl:Class rdf:about="&florist;Verpackung">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#Weiß -->
+
+    <owl:Class rdf:about="&florist;Weiß">
+        <rdfs:subClassOf rdf:resource="&florist;Farbe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#WeißerStrauß -->
+
+    <owl:Class rdf:about="&florist;WeißerStrauß">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&florist;Strauß"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&florist;enthaeltBlume"/>
+                        <owl:allValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&florist;hatFarbe"/>
+                                <owl:someValuesFrom rdf:resource="&florist;Weiß"/>
+                            </owl:Restriction>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#aBlau -->
+
+    <owl:NamedIndividual rdf:about="&florist;aBlau">
+        <rdf:type rdf:resource="&florist;Blau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#aGelb -->
+
+    <owl:NamedIndividual rdf:about="&florist;aGelb">
+        <rdf:type rdf:resource="&florist;Gelb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#aRot -->
+
+    <owl:NamedIndividual rdf:about="&florist;aRot">
+        <rdf:type rdf:resource="&florist;Rot"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#aWeiß -->
+
+    <owl:NamedIndividual rdf:about="&florist;aWeiß">
+        <rdf:type rdf:resource="&florist;Weiß"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#testBlume1 -->
+
+    <owl:NamedIndividual rdf:about="&florist;testBlume1">
+        <rdf:type rdf:resource="&florist;Tulpe"/>
+        <hatFarbe rdf:resource="&florist;aBlau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#testBlume2 -->
+
+    <owl:NamedIndividual rdf:about="&florist;testBlume2">
+        <rdf:type rdf:resource="&florist;Nelke"/>
+        <hatFarbe rdf:resource="&florist;aBlau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/owltutorial/florist#testStrauß -->
+
+    <owl:NamedIndividual rdf:about="&florist;testStrauß">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&florist;enthaeltThings"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:cardinality>
+            </owl:Restriction>
+        </rdf:type>
+        <enthaeltBlume rdf:resource="&florist;testBlume1"/>
+        <enthaeltBlume rdf:resource="&florist;testBlume2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&florist;Blume"/>
+            <rdf:Description rdf:about="&florist;Farbe"/>
+            <rdf:Description rdf:about="&florist;Karte"/>
+            <rdf:Description rdf:about="&florist;Strauß"/>
+            <rdf:Description rdf:about="&florist;Verpackung"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&florist;Nelke"/>
+            <rdf:Description rdf:about="&florist;Rose"/>
+            <rdf:Description rdf:about="&florist;Tulpe"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
