@@ -32,8 +32,8 @@ function addFlower()
     		//label.for = textUser;
     		label.innerHTML=textUser;
     		var input = document.createElement("input");
-    		input.setAttribute("class", "form-control");
-    		input.setAttribute("size","30");
+    		input.setAttribute("class", "trial");
+    		input.setAttribute("size","2");
     		input.type =  "text";
     		input.name= textUser;
     		input.value = 1;
@@ -43,8 +43,9 @@ function addFlower()
     		hiinput.type ="hidden";
     		hiinput.value = strUser;
     		hiinput.name = textUser; 
-    	li.appendChild(label);
+    	
     	li.appendChild(input);
+    	li.appendChild(label);
     	li.appendChild(hiinput);
 
     	ul.appendChild(li);
@@ -75,11 +76,16 @@ function addFlower()
             <h1>  Flowershower</h1>
             <p class="lead">Der Florist in ihrer Nähe</p>
           </div>
-        </div>
+                      <img alt="Flowershower der Blumenshop in ihrer Nähe" width="200" src="${pageContext.request.contextPath}/bootstrap/blume.jpg">        
+        </div>        
       </div>
+      
+      
   <p>Zur Auswahl stehen:</p>
-<div class="form-group">
+<div class="row">
+
       <div class="col-lg-3">
+	  <div class="form-group">
         <br>
          <select id="Blumen" size="12 "multiple="" class="form-control">
       <optgroup label="Rosen">
@@ -100,35 +106,25 @@ function addFlower()
     </select>
       </div>
     </div>
-<div class="form-group">
+          
       <div class="col-lg-3">
+	  <div class="form-group1">
       <br></br>
       <br></br>
 <button type="button" name ="add" class="btn btn-primary" onclick="addFlower()">Blume zu Strauß hinzufügen</button>
 </div>
 </div>
- <div class="bs-docs-section">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="page-header">
-            
-            <form action="create" method="post" accept-charset="ISO-8859-1">
-  <button type="submit" class="btn btn-primary" >Straus abschicken</button>
-   <div class="form-group">
+          <div class="col-lg-3">
+ <div class="trial">
+<form action="create" method="post" accept-charset="ISO-8859-1">
+  <button type="submit" class="btn btn-primary" >Strauß abschicken</button>
   <ul id="Blumenstr">
  
 	</ul>
-	</div>
-
-
-   <div class="col-lg-3">
-
-</div> 
 </form>
-            
-            </div>
           </div>
         </div>
+</div>
 
 </div>
 </body>
