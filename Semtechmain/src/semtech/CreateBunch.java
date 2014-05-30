@@ -42,16 +42,17 @@ import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
 
 import utils.Flower;
+import utils.OWLIndividualFactory;
+import utils.OntologyManager;
 import coreservlets.ServletUtilities;
 
 @WebServlet("/create")
-public class TestServlet extends HttpServlet {
+public class CreateBunch extends HttpServlet {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private OWLOntologyManager manager;
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -67,96 +68,75 @@ public class TestServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-
 		String title = "Ihr gekaufter Strauﬂ";
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
-		// initialize
-		manager = OWLManager.createOWLOntologyManager();
-		URL documentIRI = getClass().getClassLoader()
-				.getResource("florist.owl");
-		OWLOntology ont = null;
-		try {
-			IRI docIRI = IRI.create(documentIRI);
-			ont = manager.loadOntologyFromOntologyDocument(docIRI);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			// TODO: generate error message
-		} catch (OWLOntologyCreationException e) {
-			e.printStackTrace();
-			// TODO: generate error message
-		}
+		// get manager and ontology
+		OWLOntologyManager manager = OntologyManager.getManager();
+		OWLOntology ontology = OntologyManager.getOntology();
 		OWLDataFactory fac = manager.getOWLDataFactory();
-		PrefixManager pm = new DefaultPrefixManager(
-				"http://www.semanticweb.org/owltutorial/florist#");
+		PrefixManager pm = OntologyManager.getPrefixManager();
 
-		// create strauﬂ
-		OWLClass strauﬂ = fac.getOWLClass(":Strauﬂ", pm);
-		OWLNamedIndividual strauﬂ1 = fac.getOWLNamedIndividual(":Strauﬂ1", pm);
-		OWLClassAssertionAxiom b = fac.getOWLClassAssertionAxiom(strauﬂ,
-				strauﬂ1);
+		// create strauss
+		OWLClass bunchClass = fac.getOWLClass(":" + OWLIndividualFactory.BUNCH, pm);
+		OWLNamedIndividual bunch = OWLIndividualFactory.getInstance().createBunch();
+		OWLClassAssertionAxiom b = fac.getOWLClassAssertionAxiom(bunchClass,
+				bunch);
 		
-		manager.addAxiom(ont, b);
-
-		// create flowers
+		manager.addAxiom(ontology, b);
 
 		// get request parameters
 		ArrayList<Flower> flowers = parseRequestFlowers(req);
 		
-		OWLObjectProperty enthaeltBlume = fac.getOWLObjectProperty(
-				":enthaeltBlume", pm);
-		OWLObjectProperty hatFarbe = fac.getOWLObjectProperty(":hatFarbe", pm);
-		OWLObjectProperty enthaeltThings = fac.getOWLObjectProperty(
-				":enthaeltThings", pm);
+		// object properties
+		OWLObjectProperty containsFlower = fac.getOWLObjectProperty(
+				OWLIndividualFactory.CONTAINS_FLOWER, pm);
+		OWLObjectProperty hasColour = fac.getOWLObjectProperty(OWLIndividualFactory.HAS_COLOUR, pm);
 
-		// create Individuals
-		
 		Set<OWLNamedIndividual> blumenset = new HashSet<OWLNamedIndividual>();
 		
 		//counter for individuals
-		int zaehler = 0;
-		double preis = 0;
 		
+		//TODO: remove and calculate in ontology
+		double price = 0;
 		for (int i = 0; i < flowers.size(); i++) {			
 			OWLClass type = fac.getOWLClass(":" + flowers.get(i).getType(), pm);
-			// colors are e.g. arot, ablau, agelb
-			OWLNamedIndividual colour = fac.getOWLNamedIndividual(":a"
-					+ flowers.get(i).getColour(), pm);
+			// colors are named like e.g. arot, ablau, agelb
+			OWLNamedIndividual colour = fac.getOWLNamedIndividual(":"
+					+ flowers.get(i).getColour() + OWLIndividualFactory.INDIVIDUAL_SUFFIX, pm);
 			//create individuals
 			for (int k = 0; k < flowers.get(i).getQuantity(); k++) {
-				OWLNamedIndividual flower = fac.getOWLNamedIndividual(":Blume"
-						+ zaehler, pm);
+				OWLNamedIndividual flower = OWLIndividualFactory.getInstance().createFlower();
 				OWLClassAssertionAxiom a = fac.getOWLClassAssertionAxiom(type,
 						flower);
-				manager.addAxiom(ont, a);
+				manager.addAxiom(ontology, a);
 				
-				addObjectProperty(ont, hatFarbe, flower, colour);
-				addObjectProperty(ont, enthaeltBlume, strauﬂ1, flower);
+				addObjectProperty(hasColour, flower, colour);
+				addObjectProperty(containsFlower, bunch, flower);
 				
 				blumenset.add(flower);
-				zaehler++;
 			}
-			preis += (flowers.get(i).getPricePerUnit() * flowers.get(i).getQuantity());
+			price += (flowers.get(i).getPricePerUnit() * flowers.get(i).getQuantity());
 		}
 
 		// strauﬂ consits of exactly zaehler flowers
 		OWLObjectExactCardinality hasFlowerRestriction = fac
-				.getOWLObjectExactCardinality(zaehler, enthaeltThings);
+				.getOWLObjectExactCardinality(blumenset.size(), containsFlower);
 		OWLAxiom axiom = fac.getOWLClassAssertionAxiom(hasFlowerRestriction,
-				strauﬂ1);
-		manager.addAxiom(ont, axiom);
+				bunch);
+		manager.addAxiom(ontology, axiom);
 
 		// flowers are different from each other
 		OWLDifferentIndividualsAxiom ia = fac
 				.getOWLDifferentIndividualsAxiom(blumenset);
-		manager.addAxiom(ont, ia);
+		manager.addAxiom(ontology, ia);
 
-		OWLReasoner reasoner = initializeReasoner(ont);
+		OWLReasoner reasoner = OntologyManager.getReasoner();
 
 		// output
 		StringBuilder sb = new StringBuilder();
-		NodeSet<OWLClass> subClses = reasoner.getTypes(strauﬂ1, true);
+		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, true);
 		Set<OWLClass> clses = subClses.getFlattened();
 		System.out.println("Typen des neuen Strauﬂ");
 		for (OWLClass cls : clses) {
@@ -169,27 +149,28 @@ public class TestServlet extends HttpServlet {
 				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
 				+ sb.toString() +
 
-				"Preis:" + preis + "</body></html>");
+				"Preis:" + price + "</body></html>");
+		
+		//TODO: try saving ontology
+//		try {
+//			manager.saveOntology(ont, manager.getOntologyFormat(ont), IRI.create(documentIRI));
+//		} catch (OWLOntologyStorageException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (UnknownOWLOntologyException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (URISyntaxException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
-	private OWLReasoner initializeReasoner(OWLOntology ont) {
-		// initialize reasoner
-		OWLReasonerFactory reasonerFactory = new Reasoner.ReasonerFactory();
-		ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
-		OWLReasonerConfiguration config = new SimpleConfiguration(
-				progressMonitor);
-		OWLReasoner reasoner = reasonerFactory.createReasoner(ont, config);
-		// TODO: check if needed
-		// -- try more than 5 flowers
-		reasoner.precomputeInferences();
-		return reasoner;
-	}
-
-	private void addObjectProperty(OWLOntology ont, OWLObjectProperty property,
+	private void addObjectProperty(OWLObjectProperty property,
 			OWLNamedIndividual domain, OWLNamedIndividual range) {
-		OWLObjectPropertyAssertionAxiom axiom = manager.getOWLDataFactory()
+		OWLObjectPropertyAssertionAxiom axiom = OntologyManager.getManager().getOWLDataFactory()
 				.getOWLObjectPropertyAssertionAxiom(property, domain, range);
-		manager.addAxiom(ont, axiom);
+		OntologyManager.getManager().addAxiom(OntologyManager.getOntology(), axiom);
 	}
 
 	private ArrayList<Flower> parseRequestFlowers(HttpServletRequest req){

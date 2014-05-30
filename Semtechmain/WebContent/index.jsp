@@ -10,7 +10,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 <head>
-<title>copy Webshop</title>
+<title>flower-power</title>
 </head>
 <body>
 <script type="text/javascript">
