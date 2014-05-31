@@ -7,9 +7,46 @@ import javax.servlet.http.*;
 
 public class ServletUtilities {
   public static String headWithTitle(String title) {
-    return("<!DOCTYPE html>\n" +
-           "<html>\n" +
-           "<head><title>" + title + "</title></head>\n");
+	  
+
+StringBuilder sb = new StringBuilder();
+sb.append("<html>");
+sb.append("<link rel=\"stylesheet\" href=\"/Semtechmain/bootstrap/css/bootstrap.min.css\" />");
+//sb.append("<link rel=\"stylesheet\"  href=\"${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css\">");
+		sb.append("<script src=\"${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js\"></script>");
+				sb.append("<head>");
+						sb.append("<title>" +  title + "</title></head>");
+
+
+						return(sb.toString());
+	 
+
+  }
+  
+  public static String getNavBar(){
+	  StringBuilder nav = new StringBuilder();
+	  nav.append("<div class=\"navbar navbar-inverse\">");
+	  nav.append("<div class=\"navbar-header\">");
+	  nav.append("  <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
+	  nav.append("   <span class=\"icon-bar\"></span>");
+	  nav.append("    <span class=\"icon-bar\"></span>");
+	  nav.append("   <span class=\"icon-bar\"></span>");
+	  nav.append(" </button>");
+	  nav.append(" <a class=\"navbar-brand\" href=\"#\">Flowershower</a>");
+	  nav.append("</div>");
+	  
+	  nav.append("<div class=\"navbar-collapse collapse navbar-inverse-collapse\">");
+	  nav.append("<ul class=\"nav navbar-nav\">");
+	  nav.append("<li><a href=\"#\">Create Strauß</a></li>");
+			  nav.append("   <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
+	  nav.append("</ul> </div>");
+
+	  
+	  
+	  nav.append("</div>");
+	  nav.append(" </div>");
+
+	  return nav.toString();
   }
 
   /** Read a parameter with the specified name, convert it

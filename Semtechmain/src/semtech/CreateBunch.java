@@ -54,6 +54,7 @@ public class CreateBunch extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -68,7 +69,7 @@ public class CreateBunch extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		String title = "Ihr gekaufter Strauﬂ";
+		String title = "Ihr zusammengestellter Strauﬂ";
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
@@ -145,7 +146,7 @@ public class CreateBunch extends HttpServlet {
 		}
 		System.out.println("\n");
 
-		out.println(ServletUtilities.headWithTitle(title) + "<body>\n" + "<h1>"
+		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
 				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
 				+ sb.toString() +
 
