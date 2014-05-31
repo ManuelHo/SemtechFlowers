@@ -150,8 +150,9 @@ public class CreateBunch extends HttpServlet {
 		}
 		System.out.println("\n");
 		
-		/*StringBuilder dazupassen = new StringBuilder();
-		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.DAZU_PASST, pm);
+		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.FITS_TO, pm);
+		
+		StringBuilder dazupassen = new StringBuilder();
 		
   	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
 	        Set<OWLNamedIndividual> propert = propval.getFlattened();
@@ -162,7 +163,6 @@ public class CreateBunch extends HttpServlet {
 	        }
 	        System.out.println("\n");
 
-	      */ 
 		     StringBuilder sbblumen = new StringBuilder();
 
 	     for (int i = 0; i < flowers.size(); i++) {	
