@@ -1,6 +1,5 @@
-/semtech/
-/utils/
-/catalog-v001.xml
-/coreservlets/
+/coreservlets
 /florist.owl
+/semtech
+/utils
 /.gitignore
