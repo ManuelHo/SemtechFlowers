@@ -1,4 +1,4 @@
-/coreservlets
-/florist.owl
-/semtech
-/utils
+/semtech/
+/utils/
+/catalog-v001.xml
+/coreservlets/
