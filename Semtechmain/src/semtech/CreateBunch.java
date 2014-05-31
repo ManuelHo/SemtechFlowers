@@ -137,16 +137,23 @@ public class CreateBunch extends HttpServlet {
 		
 		// output
 		StringBuilder sb = new StringBuilder();
-		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, true);
+		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, false);
 		Set<OWLClass> clses = subClses.getFlattened();
 		System.out.println("Typen des neuen Strauﬂ");
 		
 		
 		for (OWLClass cls : clses) {
+			if(cls.toString() == "Owl:Thing")
+			{
+				
+			}
+			else
+			{
 			System.out.println("    " + cls);
 			System.out.println(getClassName(cls.toString()));
 			System.out.println(pm.getPrefix(cls.toString()));
 			sb.append(getClassName(cls.toString()) + "</br>");
+			}
 		}
 		System.out.println("\n");
 		
@@ -159,7 +166,7 @@ public class CreateBunch extends HttpServlet {
 	        System.out.println("Dazu passen");
 	        for (OWLNamedIndividual prop : propert) {
 	            System.out.println("    " + prop);
-	            dazupassen.append("<input type=\"checkbox\">" + getClassName(prop.toString()) +"</br>");
+	            dazupassen.append("<input type=\"checkbox\" name = \"extra\" value=\"" + getClassName(prop.toString()) + "\">" + getClassName(prop.toString()) +"</br>");
 	        }
 	        System.out.println("\n");
 
@@ -185,7 +192,7 @@ public class CreateBunch extends HttpServlet {
 						"</br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
 				
 				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\">"
-				+ "<form action=\"ende\" method=\"post\" accept-charset=\"ISO-8859-1\">"
+				+ "<form action=\"ende.jsp\" method=\"post\" accept-charset=\"ISO-8859-1\">"
 						+ "<h3>Dazu passt hervorragend </h3>" + dazupassen.toString() + " "
 								+ "<button type=\"submit\" class=\"btn btn-primary\">Einkauf abschliessen</button> </form> </div>"
 								+ ""
