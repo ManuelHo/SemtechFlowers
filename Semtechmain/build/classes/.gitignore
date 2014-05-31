@@ -2,3 +2,5 @@
 /utils/
 /catalog-v001.xml
 /coreservlets/
+/florist.owl
+/.gitignore

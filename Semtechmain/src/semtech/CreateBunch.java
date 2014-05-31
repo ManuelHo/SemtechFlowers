@@ -120,21 +120,21 @@ public class CreateBunch extends HttpServlet {
 			}
 			price += (flowers.get(i).getPricePerUnit() * flowers.get(i).getQuantity());
 		}
-
+		
 		// strauﬂ consits of exactly zaehler flowers
 		OWLObjectExactCardinality hasFlowerRestriction = fac
 				.getOWLObjectExactCardinality(blumenset.size(), containsFlower);
 		OWLAxiom axiom = fac.getOWLClassAssertionAxiom(hasFlowerRestriction,
 				bunch);
 		manager.addAxiom(ontology, axiom);
-
+		
 		// flowers are different from each other
 		OWLDifferentIndividualsAxiom ia = fac
 				.getOWLDifferentIndividualsAxiom(blumenset);
 		manager.addAxiom(ontology, ia);
-
+		
 		OWLReasoner reasoner = OntologyManager.getReasoner();
-
+		
 		// output
 		StringBuilder sb = new StringBuilder();
 		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, true);
@@ -144,6 +144,8 @@ public class CreateBunch extends HttpServlet {
 		
 		for (OWLClass cls : clses) {
 			System.out.println("    " + cls);
+			System.out.println(getClassName(cls.toString()));
+			System.out.println(pm.getPrefix(cls.toString()));
 			sb.append(getClassName(cls.toString()) + "</br>");
 		}
 		System.out.println("\n");
