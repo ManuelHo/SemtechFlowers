@@ -150,23 +150,40 @@ public class CreateBunch extends HttpServlet {
 		}
 		System.out.println("\n");
 		
-		
 		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.FITS_TO, pm);
+		
+		StringBuilder dazupassen = new StringBuilder();
 		
   	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
 	        Set<OWLNamedIndividual> propert = propval.getFlattened();
 	        System.out.println("Dazu passen");
 	        for (OWLNamedIndividual prop : propert) {
 	            System.out.println("    " + prop);
-	            sb.append(ServletUtilities.filter(prop.toString()) +"     \n");
+	            dazupassen.append(ServletUtilities.filter(prop.toString()) +"</br>");
 	        }
 	        System.out.println("\n");
 
-		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
-				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
-				+ sb.toString() +
+		     StringBuilder sbblumen = new StringBuilder();
+
+	     for (int i = 0; i < flowers.size(); i++) {	
+	    	 
+	    	 Flower f = flowers.get(i);
+	    	 sbblumen.append(f.getQuantity() + "x " + f.getType() + " , "+ f.getColour()+ "    \n");
+	     }
+	     
+	     
+	     StringBuilder output = new StringBuilder();
+	     
+	     output.append(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar());
+	     output.append("<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\">");
+	     output.append("<div class=\"col-lg-6\"> <h1>" + title +"</h1>");
+	     output.append("</div></div> </div> ");                        
+	     
+		out.println(output.toString() 
+						+ "Aus den gew‰hlten Blumen " +"</br>" + sbblumen.toString()+ 
+						"</br> wurde als </br>" + sb.toString() + "klassifiziert"  +"     \n" +
 				
-				"Preis:" + price + "</body></html>");
+				"Preis:" + price+  "</body></html>");
 		
 		
 		
