@@ -186,7 +186,7 @@ public class CreateBunch extends HttpServlet {
 				
 				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\">"
 				+ "<form action=\"ende\" method=\"post\" accept-charset=\"ISO-8859-1\">"
-						+ "<h3>Dazu passt hervoragend </h3>" + dazupassen.toString() + " "
+						+ "<h3>Dazu passt hervorragend </h3>" + dazupassen.toString() + " "
 								+ "<button type=\"submit\" class=\"btn btn-primary\">Einkauf abschliessen</button> </form> </div>"
 								+ ""
 								+ "</body></html>");
