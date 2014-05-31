@@ -1,14 +1,9 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
+<%@ page import="java.util.*" %>
+<%@ page import="coreservlets.ServletUtilities" %>
+<%= ServletUtilities.headWithTitle("FlowerShower") %>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-<head>
-<title>flower-power</title>
-</head>
 <body>
 <script type="text/javascript">
 function addFlower()
@@ -56,8 +51,7 @@ function addFlower()
 }
 </script>
 
-<%@ page import="java.util.*" %>
-<%@ page import="coreservlets.ServletUtilities" %>
+
  <%= ServletUtilities.getNavBar() %>
 
  <div class="container">

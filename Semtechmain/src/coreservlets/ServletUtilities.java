@@ -25,19 +25,19 @@ sb.append("<link rel=\"stylesheet\" href=\"/Semtechmain/bootstrap/css/bootstrap.
   
   public static String getNavBar(){
 	  StringBuilder nav = new StringBuilder();
-	  nav.append("<div class=\"navbar navbar-inverse\">");
+	  nav.append("<div class=\"navbar navbar-default\">");
 	  nav.append("<div class=\"navbar-header\">");
 	  nav.append("  <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
 	  nav.append("   <span class=\"icon-bar\"></span>");
 	  nav.append("    <span class=\"icon-bar\"></span>");
 	  nav.append("   <span class=\"icon-bar\"></span>");
 	  nav.append(" </button>");
-	  nav.append(" <a class=\"navbar-brand\" href=\"#\">Flowershower</a>");
+	  nav.append(" <a class=\"navbar-brand\" href=\"show\">Flowershower</a>");
 	  nav.append("</div>");
 	  
 	  nav.append("<div class=\"navbar-collapse collapse navbar-inverse-collapse\">");
 	  nav.append("<ul class=\"nav navbar-nav\">");
-	  nav.append("<li><a href=\"#\">Create Strauß</a></li>");
+	  nav.append("<li><a href=\"index.jsp\">Create Strauß</a></li>");
 			  nav.append("   <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
 	  nav.append("</ul> </div>");
 

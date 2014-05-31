@@ -10,6 +10,7 @@ public class OWLIndividualFactory {
 	public static final String INDIVIDUAL_SUFFIX = "Ind";
 	public static final String HAS_COLOUR = ":hatFarbe";
 	public static final String CONTAINS_FLOWER = ":enthaeltBlume";
+	public static final String DAZU_PASST =":dazupasst";
 
 	private static int counterFlower = 0;
 	private static int counterBunch = 0;

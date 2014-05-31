@@ -140,14 +140,25 @@ public class CreateBunch extends HttpServlet {
 		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, true);
 		Set<OWLClass> clses = subClses.getFlattened();
 		System.out.println("Typen des neuen Strauﬂ");
+		
+		
 		for (OWLClass cls : clses) {
 			System.out.println("    " + cls);
-			System.out.println(getClassName(cls.toString()));
-			System.out.println(pm.getPrefix(cls.toString()));
-			sb.append(ServletUtilities.filter(cls.toString()) + "     \n");
+			sb.append(getClassName(cls.toString()) + "</br>");
 		}
 		System.out.println("\n");
 		
+		
+		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.DAZU_PASST, pm);
+		
+  	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
+	        Set<OWLNamedIndividual> propert = propval.getFlattened();
+	        System.out.println("Dazu passen");
+	        for (OWLNamedIndividual prop : propert) {
+	            System.out.println("    " + prop);
+	            sb.append(ServletUtilities.filter(prop.toString()) +"     \n");
+	        }
+	        System.out.println("\n");
 
 		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
 				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
