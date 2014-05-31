@@ -85,12 +85,6 @@ function addFlower()
         <option label="Blaue Tulpe" value="Tulpe,Blau,2">Blaue Tulpe</option>
         <option label="Weiﬂe Tulpe" value="Tulpe,Weiss,2">Weiﬂe Tulpe</option>
       </optgroup>
-      <optgroup label="Nelke">
-        <option label="Gelbe Nelke" value="Nelke,Gelb,1.5">Gelbe Nelke</option>
-        <option label="Rote Nelke" value="Nelke,Rot,1.5">Rote Nelke</option>
-        <option label="Blaue Nelke" value="Nelke,Blau,1.5">Blaue Nelke</option>
-          <option label="Weiﬂe Nelke" value="Nelke,Weiss,1.5">Weiﬂe Nelke</option>
-      </optgroup>
        <optgroup label="Gerbera">
         <option label="Gelbe Gerbera" value ="Gerbera,Gelb,2.50">Gelbe Rose</option>
         <option label="Rote Gerbera" value="Gerbera,Rot,2.50">Rote Rose</option>
