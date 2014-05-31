@@ -177,13 +177,14 @@ public class CreateBunch extends HttpServlet {
 	     output.append(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar());
 	     output.append("<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\">");
 	     output.append("<div class=\"col-lg-6\"> <h1>" + title +"</h1>");
-	     output.append("</div></div> </div> ");                        
+	     output.append("</div> <img alt=\"Flowershower der Blumenshop in ihrer Nähe\" width=\"200\" src=\"/Semtechmain/bootstrap/red_rose.jpg\"></div> </div>");                        
 	     
-		out.println(output.toString() 
-						+ "Aus den gewählten Blumen " +"</br>" + sbblumen.toString()+ 
+		out.println(output.toString()
+						+ "<div class=\"col-lg-3\">" +
+						"<h6> Aus den gewählten Blumen </h6> " +"</br>" + sbblumen.toString()+ 
 						"</br> wurde als </br>" + sb.toString() + "klassifiziert"  +"     \n" +
 				
-				"Preis:" + price+  "</body></html>");
+				"Preis:" + price+ "</div></body></html>");
 		
 		
 		

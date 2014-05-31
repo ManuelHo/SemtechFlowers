@@ -38,12 +38,12 @@ sb.append("<link rel=\"stylesheet\" href=\"/Semtechmain/bootstrap/css/bootstrap.
 	  nav.append("<div class=\"navbar-collapse collapse navbar-inverse-collapse\">");
 	  nav.append("<ul class=\"nav navbar-nav\">");
 	  nav.append("<li><a href=\"index.jsp\">Create Strauß</a></li>");
-			  nav.append("   <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
+			 // nav.append("   <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-inverse-collapse\">");
 	  nav.append("</ul> </div>");
 
 	  
 	  
-	  nav.append("</div>");
+	  nav.append("");
 	  nav.append(" </div>");
 
 	  return nav.toString();
