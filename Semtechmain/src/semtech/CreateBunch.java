@@ -142,15 +142,20 @@ public class CreateBunch extends HttpServlet {
 		System.out.println("Typen des neuen Strauﬂ");
 		for (OWLClass cls : clses) {
 			System.out.println("    " + cls);
+			System.out.println(getClassName(cls.toString()));
+			System.out.println(pm.getPrefix(cls.toString()));
 			sb.append(ServletUtilities.filter(cls.toString()) + "     \n");
 		}
 		System.out.println("\n");
+		
 
 		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
 				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
 				+ sb.toString() +
-
+				
 				"Preis:" + price + "</body></html>");
+		
+		
 		
 		//TODO: try saving ontology
 //		try {
@@ -173,7 +178,17 @@ public class CreateBunch extends HttpServlet {
 				.getOWLObjectPropertyAssertionAxiom(property, domain, range);
 		OntologyManager.getManager().addAxiom(OntologyManager.getOntology(), axiom);
 	}
+	
+	public String getClassName(String input)
+	{
+		String[] res=  input.split("#");
+		String ready = res[1].substring(0, res[1].length()-1);
+	
+		return ready;
+		
+	}
 
+	
 	private ArrayList<Flower> parseRequestFlowers(HttpServletRequest req){
 		Enumeration<String> enumeration = req.getParameterNames();
 		

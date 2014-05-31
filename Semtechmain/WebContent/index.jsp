@@ -4,9 +4,6 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
 
-<!-- Optional theme -->
-<link rel="stylesheet"  href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css">
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 <head>
@@ -86,19 +83,19 @@ function addFlower()
         <option label="Gelbe Rose" value ="Rose,Gelb,2.50">Gelbe Rose</option>
         <option label="Rote Rose" value="Rose,Rot,2.50">Rote Rose</option>
         <option label="Blaue Rose" value="Rose,Blau,2.50">Blaue Rose</option>
-        <option label="Weiﬂe Rose" value="Rose,Weiss,2.50">Blaue Rose</option>
+        <option label="Weiﬂe Rose" value="Rose,Weiss,2.50">Weiﬂe Rose</option>
       </optgroup>
       <optgroup label="Tulpen">
         <option label="Gelbe Tulpe" value="Tulpe,Gelb,2">Gelbe Tulpe</option>
         <option label="Rote Tulpe" value="Tulpe,Rot,2">Rote Tulpe</option>
         <option label="Blaue Tulpe" value="Tulpe,Blau,2">Blaue Tulpe</option>
-        <option label="Weiﬂe Tulpe" value="Tulpe,Weiss,2">Blaue Tulpe</option>
+        <option label="Weiﬂe Tulpe" value="Tulpe,Weiss,2">Weiﬂe Tulpe</option>
       </optgroup>
       <optgroup label="Nelke">
         <option label="Gelbe Nelke" value="Nelke,Gelb,1.5">Gelbe Nelke</option>
         <option label="Rote Nelke" value="Nelke,Rot,1.5">Rote Nelke</option>
         <option label="Blaue Nelke" value="Nelke,Blau,1.5">Blaue Nelke</option>
-          <option label="Weiﬂe Nelke" value="Nelke,Weiss,1.5">Blaue Nelke</option>
+          <option label="Weiﬂe Nelke" value="Nelke,Weiss,1.5">Weiﬂe Nelke</option>
       </optgroup>
        <optgroup label="Gerbera">
         <option label="Gelbe Gerbera" value ="Gerbera,Gelb,2.50">Gelbe Rose</option>
@@ -107,14 +104,14 @@ function addFlower()
          <option label="Weiﬂe Gerbera" value="Gerbera,Weiss,2.50">Blaue Rose</option>
       </optgroup>
        <optgroup label="Lilie">
-        <option label="Gelbe Lilie" value="Lilie,Gelb,1.5">Gelbe Nelke</option>
-        <option label="Rote Lilie" value="Lilie,Rot,1.5">Rote Nelke</option>
-        <option label="Blaue Lilie" value="Lilie,Blau,1.5">Blaue Nelke</option>
-          <option label="Weiﬂe Lilie" value="Lilie,Weiss,1.5">Blaue Nelke</option>
+        <option label="Gelbe Lilie" value="Lilie,Gelb,1.5">Gelbe Lilie</option>
+        <option label="Rote Lilie" value="Lilie,Rot,1.5">Rote Lilie</option>
+        <option label="Blaue Lilie" value="Lilie,Blau,1.5">Blaue Lilie</option>
+          <option label="Weiﬂe Lilie" value="Lilie,Weiss,1.5">Weiﬂe Lilie</option>
       </optgroup>
        <optgroup label="Narzisse">
-        <option label="Gelbe Narzisse" value="Narzisse,Gelb,1.5">Gelbe Nelke</option>
-          <option label="Weiﬂe Narzisse" value="Narzisse,Weiss,1.5">Blaue Nelke</option>
+        <option label="Gelbe Narzisse" value="Narzisse,Gelb,1.5">Gelbe Narzisse</option>
+          <option label="Weiﬂe Narzisse" value="Narzisse,Weiss,1.5">Weiﬂe Narzisse</option>
       </optgroup>
     </select>
       </div>
