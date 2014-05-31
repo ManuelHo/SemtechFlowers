@@ -150,16 +150,16 @@ public class CreateBunch extends HttpServlet {
 		}
 		System.out.println("\n");
 		
-		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.FITS_TO, pm);
+		OWLObjectProperty passtzuZusatz = fac.getOWLObjectProperty(OWLIndividualFactory.FITS_TO, pm);
 		
 		StringBuilder dazupassen = new StringBuilder();
 		
-  	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
+  	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, passtzuZusatz);
 	        Set<OWLNamedIndividual> propert = propval.getFlattened();
 	        System.out.println("Dazu passen");
 	        for (OWLNamedIndividual prop : propert) {
 	            System.out.println("    " + prop);
-	            dazupassen.append(ServletUtilities.filter(prop.toString()) +"</br>");
+	            dazupassen.append(getClassName(prop.toString()) +"</br>");
 	        }
 	        System.out.println("\n");
 
@@ -181,10 +181,10 @@ public class CreateBunch extends HttpServlet {
 	     
 		out.println(output.toString()
 						+ "<div class=\"col-lg-3\">" +
-						"<h6> Aus den gewählten Blumen </h6> " +"</br>" + sbblumen.toString()+ 
-						"</br> wurde als </br>" + sb.toString() + "klassifiziert"  +"     \n" +
+						"<h3> Aus den gewählten Blumen </h3> " +"</br>" + sbblumen.toString()+ 
+						"</br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
 				
-				"Preis:" + price+ "</div></body></html>");
+				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\"><h3>Dazu passt hervoragend </h3>" + dazupassen.toString() + "</div></body></html>");
 		
 		
 		
