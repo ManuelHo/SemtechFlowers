@@ -137,7 +137,7 @@ public class CreateBunch extends HttpServlet {
 		
 		// output
 		StringBuilder sb = new StringBuilder();
-		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, false);
+		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, true);
 		Set<OWLClass> clses = subClses.getFlattened();
 		System.out.println("Typen des neuen Strauﬂ");
 		
@@ -150,7 +150,7 @@ public class CreateBunch extends HttpServlet {
 		}
 		System.out.println("\n");
 		
-		StringBuilder dazupassen = new StringBuilder();
+		/*StringBuilder dazupassen = new StringBuilder();
 		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.DAZU_PASST, pm);
 		
   	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
@@ -162,7 +162,7 @@ public class CreateBunch extends HttpServlet {
 	        }
 	        System.out.println("\n");
 
-	       
+	      */ 
 		     StringBuilder sbblumen = new StringBuilder();
 
 	     for (int i = 0; i < flowers.size(); i++) {	
@@ -171,8 +171,15 @@ public class CreateBunch extends HttpServlet {
 	    	 sbblumen.append(f.getQuantity() + "x " + f.getType() + " , "+ f.getColour()+ "    \n");
 	     }
 	     
-		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
-				+ title + "</h1>\n" + "<p>Ihr zusammengestellter Strauﬂ</p>\n" + ""
+	     
+	     StringBuilder output = new StringBuilder();
+	     
+	     output.append(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar());
+	     output.append("<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\">");
+	     output.append("<div class=\"col-lg-6\"> <h1>" + title +"</h1>");
+	     output.append("</div></div> </div> ");                        
+	     
+		out.println(output.toString() 
 						+ "Aus den gew‰hlten Blumen " +"</br>" + sbblumen.toString()+ 
 						"</br> wurde als </br>" + sb.toString() + "klassifiziert"  +"     \n" +
 				
@@ -204,10 +211,10 @@ public class CreateBunch extends HttpServlet {
 	
 	public String getClassName(String input)
 	{
-		//String[] res=  input.split("#");
-		//String ready = res[1].substring(0, res[1].length()-1);
+		String[] res=  input.split("#");
+		String ready = res[1].substring(0, res[1].length()-1);
 	
-		return input;
+		return ready;
 		
 	}
 
