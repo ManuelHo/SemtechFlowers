@@ -151,7 +151,7 @@ public class CreateBunch extends HttpServlet {
 		System.out.println("\n");
 		
 		
-		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.DAZU_PASST, pm);
+		OWLObjectProperty dazupasst = fac.getOWLObjectProperty(OWLIndividualFactory.FITS_TO, pm);
 		
   	    NodeSet<OWLNamedIndividual> propval = reasoner.getObjectPropertyValues(bunch, dazupasst);
 	        Set<OWLNamedIndividual> propert = propval.getFlattened();
