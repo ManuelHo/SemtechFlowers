@@ -159,7 +159,7 @@ public class CreateBunch extends HttpServlet {
 	        System.out.println("Dazu passen");
 	        for (OWLNamedIndividual prop : propert) {
 	            System.out.println("    " + prop);
-	            dazupassen.append(getClassName(prop.toString()) +"</br>");
+	            dazupassen.append("<input type=\"checkbox\">" + getClassName(prop.toString()) +"</br>");
 	        }
 	        System.out.println("\n");
 
@@ -184,7 +184,12 @@ public class CreateBunch extends HttpServlet {
 						"<h3> Aus den gewählten Blumen </h3> " +"</br>" + sbblumen.toString()+ 
 						"</br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
 				
-				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\"><h3>Dazu passt hervoragend </h3>" + dazupassen.toString() + "</div></body></html>");
+				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\">"
+				+ "<form action=\"ende\" method=\"post\" accept-charset=\"ISO-8859-1\">"
+						+ "<h3>Dazu passt hervoragend </h3>" + dazupassen.toString() + " "
+								+ "<button type=\"submit\" class=\"btn btn-primary\">Einkauf abschliessen</button> </form> </div>"
+								+ ""
+								+ "</body></html>");
 		
 		
 		
