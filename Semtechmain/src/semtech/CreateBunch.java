@@ -101,13 +101,13 @@ public class CreateBunch extends HttpServlet {
 			Set<OWLClass> clses = reasoner.getTypes(ind, true).getFlattened();
 			for (OWLClass cls : clses) {
 				
-				type = (getClassName(cls.toString()));
-				System.out.println("    " + cls);	
+				type = (getClassName(cls.toString()).trim());
+				System.out.println(cls);	
 			}
 			
 		        Set<OWLNamedIndividual> propert = reasoner.getObjectPropertyValues(ind, hasColour).getFlattened();
 		        for (OWLNamedIndividual prop : propert) {
-		            System.out.println("    " + prop);
+		            System.out.println(prop);
 		            colour = ((getClassName(prop.toString()).substring(0, getClassName(prop.toString()).length()-3)));
 		        }
 		        
@@ -115,7 +115,8 @@ public class CreateBunch extends HttpServlet {
 		        for(int j = 0; j< flower.size(); j ++)
 		        {
 		        	 System.out.println(flower.get(j).getType().toString().compareTo(type));
-		        	 System.out.println(flower.get(j).getColour()+"    " + colour);
+		        	 System.out.println(flower.get(j).getColour().trim()+ colour.trim());
+		        	 System.out.println("geh doch endlich");
 
 		        	if((flower.get(j).getType() == type) && (flower.get(j).getColour() == colour))
 		        	{
