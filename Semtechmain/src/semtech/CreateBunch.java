@@ -175,7 +175,6 @@ public class CreateBunch extends HttpServlet {
 		//counter for individuals
 		
 		//TODO: remove and calculate in ontology
-		double price = 0;
 		for (int i = 0; i < flowers.size(); i++) {			
 			OWLClass type = fac.getOWLClass(":" + flowers.get(i).getType(), pm);
 			// colors are named like e.g. arot, ablau, agelb
@@ -193,7 +192,6 @@ public class CreateBunch extends HttpServlet {
 				
 				blumenset.add(flower);
 			}
-			price += (flowers.get(i).getPricePerUnit() * flowers.get(i).getQuantity());
 		}
 		
 		// strauß consits of exactly zaehler flowers
@@ -263,7 +261,6 @@ public class CreateBunch extends HttpServlet {
 	    	 
 	    	 Flower f = flowers.get(i);
 	    	 sbblumen.append("<li>" + f.getQuantity() + "x " + f.getType() + " , "+ f.getColour()+ "</li>");
-	    	 price += f.getPricePerUnit()* f.getQuantity();
 	     }
 	     
 	     
@@ -279,8 +276,7 @@ public class CreateBunch extends HttpServlet {
 						"<h3> Aus den gewählten Blumen </h3> " +"</br> <ul>" + sbblumen.toString()+ 
 						"</ul> </br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
 				
-				"<h4>Preis: " + price
-				+ " Euro </h4></div><div class=\"col-lg-3\">"
+				"</div><div class=\"col-lg-3\">"
 				+ "<form action=\"ende.jsp\" method=\"post\" accept-charset=\"ISO-8859-1\">"
 						+ "<h3>Dazu passt hervorragend </h3>" + dazupassen.toString() + " "
 								+ "<button type=\"submit\" class=\"btn btn-primary\">Einkauf abschliessen</button> </form> </div>"
