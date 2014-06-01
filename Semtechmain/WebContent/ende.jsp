@@ -23,11 +23,13 @@
  String[] added = request.getParameterValues("extra");
      %>    
       <p>Vielen Dank für den Einkauf ihres Straußes und  
+      <ul>
       <% for(int i = 0; i < added.length; i++)
       {
-    	  out.println(added[i]);
+    	  out.println("<li>" + added[i] + "</li>");
       }
-    	 %></p>
+    	 %>
+    	 </ul></p>
       </div>
 </body>
 </html>

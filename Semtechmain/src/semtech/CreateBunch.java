@@ -60,16 +60,91 @@ public class CreateBunch extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String title = "Test Servlet with Utilities";
-		out.println(ServletUtilities.headWithTitle(title)
+		OWLOntologyManager manager = OntologyManager.getManager();
+		OWLDataFactory fac = manager.getOWLDataFactory();
+		PrefixManager pm = OntologyManager.getPrefixManager();
+		System.out.println("    " + request.getParameter("strauss"));	
+		OWLNamedIndividual bunch =fac.getOWLNamedIndividual(":" + request.getParameter("strauss"),pm);
+		
+		
+		
+		output(out,bunch, getFlowers(bunch));
+		//String title = "Test Servlet with Utilities";
+		/*out.println(ServletUtilities.headWithTitle(title)
 				+ "<body bgcolor=\"#fdf5e6\">\n" + "<h1>" + title + "</h1>\n"
 				+ "<p>Simple servlet for testing.</p>\n" + "Anzahl" + 8
-				+ "</body></html>");
+				+ "</body></html>");*/
 	}
+	
+	public ArrayList<Flower> getFlowers(OWLNamedIndividual bunch)
+	{
+		ArrayList<Flower> flower = new ArrayList<Flower>();
+		OWLOntologyManager manager = OntologyManager.getManager();
+		OWLOntology ontology = OntologyManager.getOntology();
+		OWLDataFactory fac = manager.getOWLDataFactory();
+		PrefixManager pm = OntologyManager.getPrefixManager();
+
+
+		OWLObjectProperty containsFlower = fac.getOWLObjectProperty(
+				OWLIndividualFactory.CONTAINS_FLOWER, pm);
+		OWLObjectProperty hasColour = fac.getOWLObjectProperty(OWLIndividualFactory.HAS_COLOUR, pm);
+		OWLReasoner reasoner = OntologyManager.getReasoner();
+		
+		NodeSet<OWLNamedIndividual> set = reasoner.getObjectPropertyValues(bunch, containsFlower);
+		//OWLClass type = fac.getOWLClass(":" + flowers.get(i).getType(), pm);
+		Set<OWLNamedIndividual> workwith = set.getFlattened();
+		for (OWLNamedIndividual ind : workwith)
+		{
+			
+			String type = "";
+			String colour ="";
+			Set<OWLClass> clses = reasoner.getTypes(ind, true).getFlattened();
+			for (OWLClass cls : clses) {
+				
+				type = (getClassName(cls.toString()));
+				System.out.println("    " + cls);	
+			}
+			
+		        Set<OWLNamedIndividual> propert = reasoner.getObjectPropertyValues(ind, hasColour).getFlattened();
+		        for (OWLNamedIndividual prop : propert) {
+		            System.out.println("    " + prop);
+		            colour = ((getClassName(prop.toString()).substring(0, getClassName(prop.toString()).length()-3)));
+		        }
+		        
+		        boolean added = false;
+		        for(int j = 0; j< flower.size(); j ++)
+		        {
+		        	 System.out.println(flower.get(j).getType().toString().compareTo(type));
+		        	 System.out.println(flower.get(j).getColour()+"    " + colour);
+
+		        	if((flower.get(j).getType() == type) && (flower.get(j).getColour() == colour))
+		        	{
+		        		flower.get(j).setQuantity(flower.get(j).getQuantity()+1);
+		        		added = true;
+		        	}
+		        }
+		        if (!added)
+		        {
+		        	Flower f = new Flower();
+		        	f.setType(type);
+		        	f.setColour(colour);
+		        	f.setQuantity(1);
+		        flower.add(f);	
+		        }
+		        else
+		        {
+		        	added = false;
+		        }
+		        
+		}
+		
+		return flower;
+	}
+	
+	
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		String title = "Ihr zusammengestellter Strauﬂ";
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 
@@ -132,10 +207,22 @@ public class CreateBunch extends HttpServlet {
 		OWLDifferentIndividualsAxiom ia = fac
 				.getOWLDifferentIndividualsAxiom(blumenset);
 		manager.addAxiom(ontology, ia);
+		output(out,bunch,flowers);
+		}
+
 		
+		
+		
+		public void output(PrintWriter out, OWLNamedIndividual bunch, ArrayList<Flower> flowers)
+		{
+			OWLOntologyManager manager = OntologyManager.getManager();
+			OWLOntology ontology = OntologyManager.getOntology();
+			OWLDataFactory fac = manager.getOWLDataFactory();
+			PrefixManager pm = OntologyManager.getPrefixManager();
 		OWLReasoner reasoner = OntologyManager.getReasoner();
 		
 		// output
+		String title = "Ihr zusammengestellter Strauﬂ";
 		StringBuilder sb = new StringBuilder();
 		NodeSet<OWLClass> subClses = reasoner.getTypes(bunch, false);
 		Set<OWLClass> clses = subClses.getFlattened();
@@ -143,15 +230,15 @@ public class CreateBunch extends HttpServlet {
 		
 		
 		for (OWLClass cls : clses) {
-			if(cls.toString() == "Owl:Thing")
+			if(cls.isOWLThing())
 			{
 				
 			}
 			else
 			{
 			System.out.println("    " + cls);
-			System.out.println(getClassName(cls.toString()));
-			System.out.println(pm.getPrefix(cls.toString()));
+			//System.out.println(getClassName(cls.toString()));
+			//System.out.println(pm.getPrefix(cls.toString()));
 			sb.append(getClassName(cls.toString()) + "</br>");
 			}
 		}
@@ -171,11 +258,12 @@ public class CreateBunch extends HttpServlet {
 	        System.out.println("\n");
 
 		     StringBuilder sbblumen = new StringBuilder();
-
-	     for (int i = 0; i < flowers.size(); i++) {	
+		     int price = 0;
+	    for (int i = 0; i < flowers.size(); i++) {	
 	    	 
 	    	 Flower f = flowers.get(i);
-	    	 sbblumen.append(f.getQuantity() + "x " + f.getType() + " , "+ f.getColour()+ "    \n");
+	    	 sbblumen.append("<li>" + f.getQuantity() + "x " + f.getType() + " , "+ f.getColour()+ "</li>");
+	    	 price += f.getPricePerUnit()* f.getQuantity();
 	     }
 	     
 	     
@@ -188,10 +276,11 @@ public class CreateBunch extends HttpServlet {
 	     
 		out.println(output.toString()
 						+ "<div class=\"col-lg-3\">" +
-						"<h3> Aus den gew‰hlten Blumen </h3> " +"</br>" + sbblumen.toString()+ 
-						"</br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
+						"<h3> Aus den gew‰hlten Blumen </h3> " +"</br> <ul>" + sbblumen.toString()+ 
+						"</ul> </br></div><div class=\"col-lg-3\"><h3>Klassifizierung</h3> </br>" + sb.toString() + ""  +"     \n" +
 				
-				"<h4>Preis: " + price+ " Euro </h4></div><div class=\"col-lg-3\">"
+				"<h4>Preis: " + price
+				+ " Euro </h4></div><div class=\"col-lg-3\">"
 				+ "<form action=\"ende.jsp\" method=\"post\" accept-charset=\"ISO-8859-1\">"
 						+ "<h3>Dazu passt hervorragend </h3>" + dazupassen.toString() + " "
 								+ "<button type=\"submit\" class=\"btn btn-primary\">Einkauf abschliessen</button> </form> </div>"

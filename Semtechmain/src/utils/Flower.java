@@ -16,6 +16,11 @@ public class Flower {
 		this.pricePerUnit = pricePerUnit;
 		this.quantity = quantity;
 	}
+	
+	public Flower()
+	{
+		
+	}
 
 	public int getQuantity() {
 		return quantity;

@@ -35,7 +35,7 @@ public class ShowOldBunches extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
-		String title = "Alle bisherigen Str‰uﬂe";
+		String title = "Bisher erstellte Str‰uﬂe";
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		OWLOntologyManager manager = OntologyManager.getManager();
@@ -58,16 +58,36 @@ public class ShowOldBunches extends HttpServlet{
 		
 		for (OWLNamedIndividual inv : invdi) {
 			System.out.println("    " + inv);
-			sb.append(ServletUtilities.filter(inv.toString()) +"</br>");
+			sb.append(getClassName(inv.toString()) +"<a href=\"create?strauss=" + getClassName(inv.toString())+"\"> Auswahl </a></br>");
 		}
 		System.out.println("\n");
 		
 	
-
-		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + "<h1>"
-				+ title + "</h1>\n" + "<p>Ihr Strauﬂ</p>\n" + ""
-				+ sb.toString() + "test:"+
+		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + 
+				"<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\"> <div class=\"col-lg-6\">"
+				+ "<h1> Flowershower</h1> <p class=\"lead\">Der Florist in ihrer N‰he</p> </div>"
+				+ "<img alt=\"Flowershower der Blumenshop in ihrer N‰he\" width=\"200\""
+				+ " src=\"bootstrap/blume.jpg\"> </div> </div> "
+				+"<h1>"
+				+ title + "</h1>\n" + ""
+				+ sb.toString() +
 				"</body></html>");
 		
+		
+	
+
+
+			
+		
 	}
+	
+	public String getClassName(String input)
+	{
+		String[] res=  input.split("#");
+		String ready = res[1].substring(0, res[1].length()-1);
+	
+		return ready;
+		
+	}
+
 }
