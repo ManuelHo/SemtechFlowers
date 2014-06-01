@@ -29,7 +29,7 @@
     	  out.println("<li>" + added[i] + "</li>");
       }
     	 %>
-    	 </ul></p>
+    	 </ul>
       </div>
 </body>
 </html>

@@ -72,7 +72,7 @@ function addFlower()
       <div class="col-lg-3">
 	  <div class="form-group">
         <br>
-         <select id="Blumen" size="12 "multiple="" class="form-control">
+         <select id="Blumen" size="12" class="form-control">
       <optgroup label="Rosen">
         <option label="Gelbe Rose" value ="Rose,Gelb,2.50">Gelbe Rose</option>
         <option label="Rote Rose" value="Rose,Rot,2.50">Rote Rose</option>

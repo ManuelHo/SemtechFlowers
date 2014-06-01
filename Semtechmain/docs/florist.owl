@@ -95,37 +95,6 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.semanticweb.org/semtech/flowers#hatGesamtpreis -->
-
-    <owl:DatatypeProperty rdf:about="&flowers;hatGesamtpreis">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:domain rdf:resource="&flowers;Strauss"/>
-        <rdfs:range rdf:resource="&xsd;double"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/semtech/flowers#hatStueckpreis -->
-
-    <owl:DatatypeProperty rdf:about="&flowers;hatStueckpreis">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:domain rdf:resource="&flowers;Blume"/>
-        <rdfs:range rdf:resource="&xsd;double"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -524,7 +493,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;GelbeNarzisse">
         <rdf:type rdf:resource="&flowers;Narzisse"/>
-        <hatStueckpreis>2</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;GelbInd"/>
     </owl:NamedIndividual>
     
@@ -534,7 +502,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;GelbeTulpe">
         <rdf:type rdf:resource="&flowers;Tulpe"/>
-        <hatStueckpreis>3</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;GelbInd"/>
     </owl:NamedIndividual>
     
@@ -593,7 +560,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;RoteRose">
         <rdf:type rdf:resource="&flowers;Rose"/>
-        <hatStueckpreis>4.0</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;RotInd"/>
     </owl:NamedIndividual>
     
@@ -611,7 +577,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;RoteRose2">
         <rdf:type rdf:resource="&flowers;Rose"/>
-        <hatStueckpreis>4</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;RotInd"/>
     </owl:NamedIndividual>
     
@@ -621,7 +586,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;RoteRose3">
         <rdf:type rdf:resource="&flowers;Rose"/>
-        <hatStueckpreis>4</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;RotInd"/>
     </owl:NamedIndividual>
     
@@ -631,7 +595,6 @@
 
     <owl:NamedIndividual rdf:about="&flowers;RoteRose4">
         <rdf:type rdf:resource="&flowers;Rose"/>
-        <hatStueckpreis>4</hatStueckpreis>
         <hatFarbe rdf:resource="&flowers;RotInd"/>
     </owl:NamedIndividual>
     
@@ -790,16 +753,6 @@
      -->
 
     <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&flowers;Gerbera"/>
-            <rdf:Description rdf:about="&flowers;Lilie"/>
-            <rdf:Description rdf:about="&flowers;Narzisse"/>
-            <rdf:Description rdf:about="&flowers;Rose"/>
-            <rdf:Description rdf:about="&flowers;Tulpe"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="&flowers;GelbeNarzisse"/>
@@ -818,13 +771,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&flowers;WeisseLilie"/>
-            <rdf:Description rdf:about="&flowers;WeisseLilie2"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="&flowers;RoteRose"/>
             <rdf:Description rdf:about="&flowers;RoteRose10"/>
             <rdf:Description rdf:about="&flowers;RoteRose2"/>
@@ -835,6 +781,23 @@
             <rdf:Description rdf:about="&flowers;RoteRose7"/>
             <rdf:Description rdf:about="&flowers;RoteRose8"/>
             <rdf:Description rdf:about="&flowers;RoteRose9"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&flowers;Gerbera"/>
+            <rdf:Description rdf:about="&flowers;Lilie"/>
+            <rdf:Description rdf:about="&flowers;Narzisse"/>
+            <rdf:Description rdf:about="&flowers;Rose"/>
+            <rdf:Description rdf:about="&flowers;Tulpe"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&flowers;WeisseLilie"/>
+            <rdf:Description rdf:about="&flowers;WeisseLilie2"/>
         </owl:distinctMembers>
     </rdf:Description>
     
@@ -883,20 +846,59 @@
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="&flowers;Muttertagskarte"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#M"/>
+                                <swrl:classPredicate rdf:resource="&flowers;Strauss"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ST"/>
                             </rdf:Description>
                         </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&flowers;hatFarbe"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#F"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&flowers;hatFarbe"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#B"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#F"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&flowers;enthaeltBlume"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#B"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#ST"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
                     </rdf:Description>
                 </rdf:rest>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="&flowers;Fruehlingsstrauss"/>
+                        <swrl:classPredicate rdf:resource="&flowers;Schleife"/>
                         <swrl:argument1 rdf:resource="urn:swrl#S"/>
                     </rdf:Description>
                 </rdf:first>
@@ -910,8 +912,8 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="&flowers;passtZuStrauss"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#M"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#S"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#ST"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
@@ -927,8 +929,8 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="&flowers;passtZuStrauss"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#R"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#M"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#S"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
@@ -939,10 +941,31 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="&flowers;Rosenstrauss"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#R"/>
+                        <swrl:classPredicate rdf:resource="&flowers;Fruehlingsstrauss"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
                     </rdf:Description>
                 </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&flowers;Muttertagskarte"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#M"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -956,8 +979,29 @@
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&flowers;Rosenstrauss"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#R"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&flowers;passtZuStrauss"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#R"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
@@ -1054,87 +1098,6 @@
                         <swrl:propertyPredicate rdf:resource="&flowers;passtZuStrauss"/>
                         <swrl:argument2 rdf:resource="urn:swrl#D"/>
                         <swrl:argument1 rdf:resource="urn:swrl#W"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="&flowers;enthaeltBlume"/>
-                                        <swrl:argument2 rdf:resource="urn:swrl#B"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#ST"/>
-                                    </rdf:Description>
-                                </rdf:first>
-                                <rdf:rest>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                                        <rdf:rest>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;AtomList"/>
-                                                <rdf:rest rdf:resource="&rdf;nil"/>
-                                                <rdf:first>
-                                                    <rdf:Description>
-                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                        <swrl:propertyPredicate rdf:resource="&flowers;hatFarbe"/>
-                                                        <swrl:argument2 rdf:resource="urn:swrl#F"/>
-                                                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
-                                                    </rdf:Description>
-                                                </rdf:first>
-                                            </rdf:Description>
-                                        </rdf:rest>
-                                        <rdf:first>
-                                            <rdf:Description>
-                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                                <swrl:propertyPredicate rdf:resource="&flowers;hatFarbe"/>
-                                                <swrl:argument1 rdf:resource="urn:swrl#B"/>
-                                                <swrl:argument2 rdf:resource="urn:swrl#F"/>
-                                            </rdf:Description>
-                                        </rdf:first>
-                                    </rdf:Description>
-                                </rdf:rest>
-                            </rdf:Description>
-                        </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="&flowers;Strauss"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#ST"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="&flowers;Schleife"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="&flowers;passtZuStrauss"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#S"/>
-                        <swrl:argument2 rdf:resource="urn:swrl#ST"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>

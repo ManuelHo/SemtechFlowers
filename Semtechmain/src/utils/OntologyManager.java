@@ -10,12 +10,16 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.PrefixManager;
+import org.semanticweb.owlapi.reasoner.BufferingMode;
 import org.semanticweb.owlapi.reasoner.ConsoleProgressMonitor;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
+
+import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 
 public class OntologyManager {
 
@@ -60,15 +64,40 @@ public class OntologyManager {
 
 	public static OWLReasoner getReasoner() {
 		if (reasoner == null) {
-			// initialize reasoner
+			
+	 
+					//PelletReasoner pr = new PelletReasoner(getOntology(),BufferingMode.BUFFERING);
+					
+					//OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+					//OWLOntology ontology = manager.loadOntology(IRI.create(file));
+
+			PelletReasoner pelletreasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner( getOntology() );
+
+					//PelletReasoner pelletreasoner = PelletReasonerFactory.getInstance().createReasoner( getOntology() );
+					System.out.println("done.");
+					//pelletreasoner.getKB().realize();
+					//pelletreasoner.getKB().printClassTree();
+
+					//pelletreasoner.getKB().realize();
+					//pelletreasoner.getKB().printClassTree();
+					
+					//pelletreasoner.getKB()
+					
+						
+			
+			/*// initialize reasoner
 			OWLReasonerFactory reasonerFactory = new Reasoner.ReasonerFactory();
+			
+			
 			ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
 			OWLReasonerConfiguration config = new SimpleConfiguration(
 					progressMonitor);
 			reasoner = reasonerFactory.createReasoner(ontology, config);
 			// TODO: check if needed
 			// -- try more than 5 flowers
-			reasoner.precomputeInferences();
+			reasoner.precomputeInferences();*/
+		
+					reasoner = pelletreasoner;
 		}else{
 			reasoner.flush();
 		}
