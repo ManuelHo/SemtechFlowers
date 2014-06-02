@@ -61,7 +61,7 @@ function addFlower()
             <h1>  Flowershower</h1>
             <p class="lead">Der Florist in ihrer Nähe</p>
           </div>
-                      <img alt="Flowershower der Blumenshop in ihrer Nähe" width="200" src="${pageContext.request.contextPath}/bootstrap/blume.jpg">        
+                      <img alt="Flowershower der Blumenshop in Ihrer Nähe" width="200" src="${pageContext.request.contextPath}/bootstrap/blume.jpg">        
         </div>        
       </div>
       
