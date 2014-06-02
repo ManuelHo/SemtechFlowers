@@ -65,7 +65,7 @@ public class ShowOldBunches extends HttpServlet{
 	
 		out.println(ServletUtilities.headWithTitle(title) + "<body>\n"+ ServletUtilities.getNavBar() + 
 				"<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\"> <div class=\"col-lg-6\">"
-				+ "<h1> Flowershower</h1> <p class=\"lead\">Der Florist in ihrer Nähe</p> </div>"
+				+ "<h1> Flowershower</h1> <p class=\"lead\">Der Florist in Ihrer Nähe</p> </div>"
 				+ "<img alt=\"Flowershower der Blumenshop in ihrer Nähe\" width=\"200\""
 				+ " src=\"bootstrap/blume.jpg\"> </img> </div> </div> "
 				+"<h1>"
