@@ -328,13 +328,15 @@ public class CreateBunch extends HttpServlet {
 		while (enumeration.hasMoreElements()) {
 			String parameterName = (String) enumeration.nextElement();
 			int count = Integer.parseInt(req.getParameterValues(parameterName)[0]);
-			
+			if (count > 0)
+			{
 			String[] params = req.getParameterValues(parameterName)[1].split(",");
 			String type = params[0];
 			String colour = params[1];
 			double price = Double.parseDouble(params[2]);
 			// create flower and add to list
 			flowers.add(new Flower(parameterName, type, colour, price, count));
+			}
 		}
 		
 		return flowers;
