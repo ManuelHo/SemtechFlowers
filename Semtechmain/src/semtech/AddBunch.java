@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import coreservlets.ServletUtilities;
 
-@WebServlet("/add")
+@WebServlet("/add1")
 public class AddBunch extends HttpServlet {
 
 	/**

@@ -74,7 +74,7 @@ public class OntologyManager {
 			PelletReasoner pelletreasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner( getOntology() );
 
 					//PelletReasoner pelletreasoner = PelletReasonerFactory.getInstance().createReasoner( getOntology() );
-					System.out.println("done.");
+					//System.out.println("done.");
 					//pelletreasoner.getKB().realize();
 					//pelletreasoner.getKB().printClassTree();
 
@@ -85,8 +85,8 @@ public class OntologyManager {
 					
 						
 			
-			/*// initialize reasoner
-			OWLReasonerFactory reasonerFactory = new Reasoner.ReasonerFactory();
+			// initialize reasoner
+			/*OWLReasonerFactory reasonerFactory = new Reasoner.ReasonerFactory();
 			
 			
 			ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
@@ -95,8 +95,8 @@ public class OntologyManager {
 			reasoner = reasonerFactory.createReasoner(ontology, config);
 			// TODO: check if needed
 			// -- try more than 5 flowers
-			reasoner.precomputeInferences();*/
-		
+			reasoner.precomputeInferences();
+		*/
 					reasoner = pelletreasoner;
 		}else{
 			reasoner.flush();

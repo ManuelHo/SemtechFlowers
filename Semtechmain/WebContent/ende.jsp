@@ -15,7 +15,7 @@
             <h1>  Flowershower</h1>
             <p class="lead">Der Florist in ihrer Nähe</p>
           </div>
-                      <img alt="Flowershower der Blumenshop in ihrer Nähe" width="200" src="${pageContext.request.contextPath}/bootstrap/blume.jpg">        
+                      <img alt="Flowershower der Blumenshop in ihrer Nähe" width="200" src="${pageContext.request.contextPath}/bootstrap/blume.jpg"></img>        
         </div>        
       </div>
  
@@ -24,10 +24,14 @@
      %>    
       <p>Vielen Dank für den Einkauf ihres Straußes und  
       <ul>
-      <% for(int i = 0; i < added.length; i++)
+      <%
+      if(added != null) 
+    	  {
+    	  for(int i = 0; i < added.length; i++)
       {
     	  out.println("<li>" + added[i] + "</li>");
       }
+    	  }
     	 %>
     	 </ul>
       </div>

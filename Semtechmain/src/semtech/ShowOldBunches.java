@@ -23,7 +23,7 @@ import coreservlets.ServletUtilities;
 import utils.OWLIndividualFactory;
 import utils.OntologyManager;
 
-@WebServlet("/show")
+@WebServlet("/index")
 public class ShowOldBunches extends HttpServlet{
 
 	
@@ -67,11 +67,9 @@ public class ShowOldBunches extends HttpServlet{
 				"<div class=\"container\"> <div class=\"page-header\" id=\"banner\"> <div class=\"row\"> <div class=\"col-lg-6\">"
 				+ "<h1> Flowershower</h1> <p class=\"lead\">Der Florist in ihrer Nähe</p> </div>"
 				+ "<img alt=\"Flowershower der Blumenshop in ihrer Nähe\" width=\"200\""
-				+ " src=\"bootstrap/blume.jpg\"> </div> </div> "
+				+ " src=\"bootstrap/blume.jpg\"> </img> </div> </div> "
 				+"<h1>"
-				+ title + "</h1>\n" + ""
-				+ sb.toString() +
-				"</body></html>");
+				+ title + "</h1>\n" + sb.toString() + "</div></body></html>");
 		
 		
 	
