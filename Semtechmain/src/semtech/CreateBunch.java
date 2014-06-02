@@ -114,12 +114,14 @@ public class CreateBunch extends HttpServlet {
 		        boolean added = false;
 		        for(int j = 0; j< flower.size(); j ++)
 		        {
-		        	 System.out.println(flower.get(j).getType().toString().compareTo(type));
-		        	 System.out.println(flower.get(j).getColour().trim()+ colour.trim());
-		        	 System.out.println("geh doch endlich");
+		        	// System.out.println(flower.get(j).getType().toString().compareTo(type));
+		        	// System.out.println(flower.get(j).getColour().toString().trim().compareTo(colour.trim()));
+		        	// System.out.println(flower.get(j).getColour().trim()+ colour.trim());
+		        	// System.out.println("geh doch endlich");
 
-		        	if((flower.get(j).getType() == type) && (flower.get(j).getColour() == colour))
+		        	if((flower.get(j).getType().toString().compareTo(type) == 0) && (flower.get(j).getColour().toString().compareTo(colour) == 0))
 		        	{
+		        		//System.out.println("gleich");
 		        		flower.get(j).setQuantity(flower.get(j).getQuantity()+1);
 		        		added = true;
 		        	}
