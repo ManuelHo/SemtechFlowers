@@ -6,7 +6,12 @@ import javax.servlet.http.*;
 /** Some simple time savers. Static methods. */
 
 public class ServletUtilities {
-  public static String headWithTitle(String title) {
+/**
+ * sets stylesheets and title
+ * @param title
+ * @return
+ */
+	public static String headWithTitle(String title) {
 	  
 
 StringBuilder sb = new StringBuilder();
@@ -22,7 +27,10 @@ sb.append("<link rel=\"stylesheet\" href=\"/Semtechmain/bootstrap/css/bootstrap.
 	 
 
   }
-  
+  /**
+   * return Navigationbar
+   * @return
+   */
   public static String getNavBar(){
 	  StringBuilder nav = new StringBuilder();
 	  nav.append("<div class=\"navbar navbar-default\">");
@@ -71,20 +79,7 @@ sb.append("<link rel=\"stylesheet\" href=\"/Semtechmain/bootstrap/css/bootstrap.
   }
   
   
-  
-  public static String getStringParameter(HttpServletRequest request,
-          String paramName,
-          String defaultValue) {
-String paramString = request.getParameter(paramName);
-String paramValue;
-try {
-paramValue = paramString.toString();
-} catch(Exception nfe) { // null or bad format
-paramValue = defaultValue;
-}
-return(paramValue);
-}
-
+ 
 
   /** Reads param and converts to double. Default if problem. */
   

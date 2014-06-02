@@ -54,7 +54,9 @@ public class CreateBunch extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	/**
+	 * get -> is used when reasoning getting an already created bunch
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -76,6 +78,11 @@ public class CreateBunch extends HttpServlet {
 				+ "</body></html>");*/
 	}
 	
+	/**
+	 * gets all flowers from an already created bunch an adds them to Arraylist
+	 * @param bunch
+	 * @return
+	 */
 	public ArrayList<Flower> getFlowers(OWLNamedIndividual bunch)
 	{
 		ArrayList<Flower> flower = new ArrayList<Flower>();
@@ -145,7 +152,9 @@ public class CreateBunch extends HttpServlet {
 	}
 	
 	
-
+	/**
+	 * normal metho for creating an new bunch
+	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		res.setContentType("text/html");
@@ -213,7 +222,12 @@ public class CreateBunch extends HttpServlet {
 
 		
 		
-		
+		/**
+		 * does the  reasoning and creates output
+		 * @param out
+		 * @param bunch
+		 * @param flowers
+		 */
 		public void output(PrintWriter out, OWLNamedIndividual bunch, ArrayList<Flower> flowers)
 		{
 			OWLOntologyManager manager = OntologyManager.getManager();
@@ -302,7 +316,13 @@ public class CreateBunch extends HttpServlet {
 //			e.printStackTrace();
 //		}
 	}
-
+		
+		/**
+		 * adds OwlObjectProperty Assertion with parameters to Ontology
+		 * @param property
+		 * @param domain
+		 * @param range
+		 */
 	private void addObjectProperty(OWLObjectProperty property,
 			OWLNamedIndividual domain, OWLNamedIndividual range) {
 		OWLObjectPropertyAssertionAxiom axiom = OntologyManager.getManager().getOWLDataFactory()
@@ -310,6 +330,11 @@ public class CreateBunch extends HttpServlet {
 		OntologyManager.getManager().addAxiom(OntologyManager.getOntology(), axiom);
 	}
 	
+	/**
+	 * returns just the name of the class without Prefix
+	 * @param input
+	 * @return
+	 */
 	public String getClassName(String input)
 	{
 		String[] res=  input.split("#");
@@ -319,7 +344,11 @@ public class CreateBunch extends HttpServlet {
 		
 	}
 
-	
+	/**
+	 * parses the Requestparameters to an ArrayList to use for creating an new bunch
+	 * @param req
+	 * @return
+	 */
 	private ArrayList<Flower> parseRequestFlowers(HttpServletRequest req){
 		Enumeration<String> enumeration = req.getParameterNames();
 		

@@ -28,7 +28,7 @@ public class ShowOldBunches extends HttpServlet{
 
 	
 	/**
-	 * 
+	 * shows all bunches in ontology
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -78,7 +78,11 @@ public class ShowOldBunches extends HttpServlet{
 			
 		
 	}
-	
+	/**
+	 * returns class name without prefixes
+	 * @param input
+	 * @return
+	 */
 	public String getClassName(String input)
 	{
 		String[] res=  input.split("#");
