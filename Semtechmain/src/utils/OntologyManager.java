@@ -92,12 +92,12 @@ public class OntologyManager {
 			ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
 			OWLReasonerConfiguration config = new SimpleConfiguration(
 					progressMonitor);
-			reasoner = reasonerFactory.createReasoner(ontology, config);
+			reasoner = reasonerFactory.createReasoner(ontology, config);*/
 			// TODO: check if needed
 			// -- try more than 5 flowers
-			reasoner.precomputeInferences();
-		*/
-					reasoner = pelletreasoner;
+			//reasoner.precomputeInferences();
+		
+				reasoner = pelletreasoner;
 		}else{
 			reasoner.flush();
 		}
